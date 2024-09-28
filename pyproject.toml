@@ -1,0 +1,17 @@
+[tool.poetry]
+name = "schedule-maker"
+version = "0.1.0"
+description = ""
+authors = ["yogson <yogson@gmail.com>"]
+readme = "README.md"
+packages = [{include = "schedule_maker"}]
+
+[tool.poetry.dependencies]
+python = "^3.9"
+openpyxl = "^3.1.2"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
