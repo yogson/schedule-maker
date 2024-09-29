@@ -1,4 +1,5 @@
 import datetime
+from typing import Iterable
 
 from models import Pair
 
@@ -17,7 +18,7 @@ END:VCALENDAR
 """
 
 
-def build_ics(pairs: list[Pair]) -> str:
+def build_ics(pairs: Iterable[Pair]) -> str:
 
     vevent_list = []
 

@@ -34,6 +34,12 @@ class Pair:
     key: str = field(default_factory=lambda: "")
     group: set['Student'] = field(default_factory=lambda: set())
 
+    def __hash__(self):
+        return hash(self.activity.label)
+
+    def __eq__(self, other):
+        return self.activity.label == other.activity.label
+
     def intersect(self, other: 'Pair') -> bool:
         return self.time_slot.intersect(other.time_slot)
 

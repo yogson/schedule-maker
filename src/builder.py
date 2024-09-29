@@ -26,6 +26,7 @@ def build_pairs(data: list[dict[str, str]], key: str = None) -> list[Pair]:
                 key=key
             )
         )
+
     return pairs
 
 
@@ -55,9 +56,9 @@ def assign_students(students: list[dict[str, Any]], pairs: dict[str, list[Pair]]
     return pairs
 
 
-def build_individual_schedule(student: Student, all_pairs: list[Pair]) -> list[Pair]:
-    res = []
+def build_individual_schedule(student: Student, all_pairs: list[Pair]) -> set[Pair]:
+    res = set()
     for pair in all_pairs:
         if student.on_pair(pair):
-            res.append(pair)
+            res.add(pair)
     return res
