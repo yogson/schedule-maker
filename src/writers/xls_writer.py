@@ -2,21 +2,19 @@ from pathlib import Path
 
 from openpyxl import Workbook
 
-from models import Pair
 
-
-def build_xls(data: list[Pair]) -> Workbook:
+def dict_to_xlsx(data: list[dict]) -> Workbook | None:
     workbook = Workbook()
-    workbook.remove(workbook.worksheets[0])
+    sheet = workbook.active
 
-    for pair in data:
-        ws = workbook.create_sheet(title=f"{pair.time_slot.start.strftime('%d.%m.%Y %H-%M')} {pair.activity.label}")
-        ws["A1"] = pair.activity.label
-        ws["A2"] = pair.activity.link
-        ws["A3"] = ""
-        for i, student in enumerate(pair.group):
-            ws[f"A{i+4}"] = i + 1
-            ws[f"B{i+4}"] = student.name
+    if not data:
+        return
+
+    headers = list(data[0].keys())
+    sheet.append(headers)
+
+    for row in data:
+        sheet.append([row.get(header, '') for header in headers])
 
     return workbook
 
